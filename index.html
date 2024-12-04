@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- this is how we link up the css -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- And this is how we link up the JS! -->
+    <script defer src="js/main.js"></script>
+    <!-- A fun title -->
+    <title>Donner du pouvoir au Tic Tac Toe pour le bien de l'humanité</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <h2>C'est le tour des X !</h2>
+    <div id="overlay" class="overlay"></div>
+<dialog id="popUp">
+  <div class="dialog-content">
+    <div id="header" class="header">
+      <h1>Projet personnel</h1>
+      <hr id="underline" class="underline" />
+      <p id="italic">Design web gr.2 - Automne 2024</p>
+    </div>
+    <div id="container" class="container">
+      <div id="textLeft" class="text-left">
+        <h2 id="petit">Réalisé par</h2>
+        <p id="italic">Donovan Hamel</p>
+        <h2 id="petit">Inspiration</h2>
+        <p id="italic"><a href="https://codesandbox.io/p/sandbox/z9fhk" target="_blank">https://codesandbox.io/p/sandbox/z9fhk</a></p>
+      </div>
+        <img id="megaman" src="megaman.png" alt="Megaman Image" />
+    </div>
+    <button onclick="fermerDialogue()" class="btn-bleu">Fermer la fenêtre</button>
+    <button onclick="fermerPourToujours()" class="btn-ecriture">Ne plus afficher cette fenêtre</button>
+      </div>
+</dialog>
+    
+    <!-- Many websites are just divs on divs on divs. -->
+    <div class="flex-container flex-column">
+        <div class="flex-container flex-wrap" id="board">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        </div>
+        <!-- I added a little reset button because our users are going to want to play round after round of our glorious game without ever refreshing the browser! -->
+        <button id="reset-button">reset</button>
+    </div>
+</body>
+</html>

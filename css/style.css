@@ -1,0 +1,161 @@
+body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    
+h2 {
+    margin: 0 auto;
+    font-size: 35px;
+    margin: 10px;
+}
+    
+    
+.flex-container {
+    /* In order to use flex-box we need to first set our display property */
+    display: flex;
+    /* center the container horizontally */
+    justify-content: center;
+    /* this will center content vertically */
+    align-items: center;
+    /* tells the container to align the children in columns rather than rows */
+}
+
+.flex-column {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    /* tells the container to drop down once it reaches max-width */
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+    height: 432px;
+    width: 432px;
+}
+    
+    
+.square {
+    border: 2px solid rgba(0, 0, 0, .75);
+    height: 140px;
+    width: 140px;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+    
+#reset-button {
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid black;
+    height: 55px;
+    width: 100px;
+    margin: 10px;
+}
+
+.square.x {
+    color: red; 
+    font-weight: bold; 
+    font-family: "Lobster", sans-serif;
+}
+
+
+.square.o {
+    color: blue;
+    font-style: italic; 
+    font-family: "Lobster", sans-serif;
+}
+
+/* Style de l'image */
+#megaman {
+    max-width: 100%;
+    height: 200px;
+    flex: 1;
+    text-align: right;
+  }
+
+/* Style du dialogue */
+#popUp {
+  width: 600px;
+  padding: 20px;
+  border: solid blue;
+  border-radius: 8px;
+  background-color: white;
+  border-radius: 16px;
+  z-index: 2; 
+}
+
+/* Contenu du dialogue */
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Barre sous le titre */
+#underline {
+  width: 400px;
+  border: none;
+  border-top: 1px solid blue;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Mise en page du conteneur principal */
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Bloc de texte à gauche */
+#textLeft {
+  flex: 1;
+  text-align: left;
+}
+
+/* Style pour le bouton "Fermer la fenêtre" */
+.btn-bleu {
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px; /* Distance entre les boutons */
+}
+
+/* Style pour le bouton "Ne plus afficher cette fenêtre" */
+.btn-ecriture {
+    background: none;
+    color: black;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}   
+
+#italic 
+{
+    font-style: italic;
+}
+
+#petit{
+        font-size: 16px;
+        margin-left: 0px;
+}
+
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(93, 188, 251, 0.5); 
+    backdrop-filter: blur(5px); 
+    display: none; 
+    z-index: 1;
+}
