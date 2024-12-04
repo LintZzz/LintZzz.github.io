@@ -1,4 +1,4 @@
-const victoireeningCombos = [
+const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -10,92 +10,92 @@ const victoireeningCombos = [
     ];
 
 
-let tableauu;
-let toure = 'X';
-let victoiree;
+let board;
+let turn = 'X';
+let win;
 
 let scoreX = 0;
 let scoreO = 0;
 
 
-const bobby = Array.from(document.querySelectorAll('#tableauu div'));
-const scoretableauu = document.createElement('div');
-scoretableauu.id = "scoretableauu";
-document.body.insertBefore(scoretableauu, document.querySelector('h1').nextSibling);
+const squares = Array.from(document.querySelectorAll('#board div'));
+const scoreBoard = document.createElement('div');
+scoreBoard.id = "scoreboard";
+document.body.insertBefore(scoreBoard, document.querySelector('h1').nextSibling);
 
-document.getElementById('tableauu').addEventListener('click', handletoure);
+document.getElementById('board').addEventListener('click', handleTurn);
 const messages = document.querySelector('h2');
 document.getElementById('reset-button').addEventListener('click', init);
 
 
-function getvictoireener() {
-    let victoireener = null;
-    victoireeningCombos.forEach(function(combo, index) {
-        if (tableauu[combo[0]] && tableauu[combo[0]] === tableauu[combo[1]] && tableauu[combo[0]] === tableauu[combo[2]]) victoireener = tableauu[combo[0]];
+function getWinner() {
+    let winner = null;
+    winningCombos.forEach(function(combo, index) {
+        if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
         });
-        return victoireener ? victoireener : tableauu.includes('') ? null : 'T';
+        return winner ? winner : board.includes('') ? null : 'T';
 };
 
-function handletoure() {
-    let idx = bobby.findIndex(function(square) {
+function handleTurn() {
+    let idx = squares.findIndex(function(square) {
         return square === event.target;
     });
     
    
-    if (tableauu[idx] || victoiree) return;
+    if (board[idx] || win) return;
     
-    tableauu[idx] = toure;
-    toure = toure === 'X' ? 'O' : 'X';
-    victoiree = getvictoireener();
-    if (victoiree) {
-        updateScore(victoiree);
+    board[idx] = turn;
+    turn = turn === 'X' ? 'O' : 'X';
+    win = getWinner();
+    if (win) {
+        updateScore(win);
     }
     render();
 };
 
 function init() {
-    tableauu = [
+    board = [
     '', '', '',
     '', '', '',
     '', '', ''
     ];
-    victoiree = null
+    win = null
     render();
 };
 
 function render() {
-    tableauu.forEach(function(mark, index) {
-        bobby[index].textContent = mark;
+    board.forEach(function(mark, index) {
+        squares[index].textContent = mark;
         
-        bobby[index].classList.remove('x', 'o');
+        squares[index].classList.remove('x', 'o');
 
         if (mark === 'X') {
-            bobby[index].classList.add('x'); 
+            squares[index].classList.add('x'); 
         } else if (mark === 'O') {
-            bobby[index].classList.add('o'); 
+            squares[index].classList.add('o'); 
         }
     });
-    messages.textContent = victoiree === 'T' ? `C'est un match nul !` : victoiree ? `${victoiree} Gagne le match!` : `C'est le tour des ${toure} !`;
+    messages.textContent = win === 'T' ? `C'est un match nul !` : win ? `${win} Gagne le match!` : `C'est le tour des ${turn} !`;
 };
 
-function updateScore(victoireener) {
-    if (victoireener === 'X') {
+function updateScore(winner) {
+    if (winner === 'X') {
         scoreX++;
-    } else if (victoireener === 'O') {
+    } else if (winner === 'O') {
         scoreO++;
     }
     displayScore();
 }
 
 function displayScore() {
-    scoretableauu.textContent = `Score: X - ${scoreX} | O - ${scoreO}`;
+    scoreBoard.textContent = `Score: X - ${scoreX} | O - ${scoreO}`;
 }
 init();
 
 const modal = document.getElementById('popUp');
 const overlay = document.getElementById('overlay');
 
-victoireedow.addEventListener('load', () => {
+window.addEventListener('load', () => {
   modal.showModal();  
   overlay.style.display = 'block';  
   document.body.style.overflow = 'hidden'; 
@@ -111,7 +111,7 @@ function fermerPourToujours() {
   overlay.style.display = 'none';  
   document.body.style.overflow = ''; 
 }
-victoireedow.onload = function() {
+window.onload = function() {
   if (localStorage.getItem("dialogueFermé") === "true") {
     document.getElementById("popUp").close();
     overlay.style.display = 'none';  
