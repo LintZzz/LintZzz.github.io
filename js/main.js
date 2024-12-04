@@ -1,5 +1,4 @@
-/*----- constants -----*/
-const winningCombos = [
+const victoireeningCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -10,143 +9,109 @@ const winningCombos = [
     [2, 4, 6]
     ];
 
-/*----- app's state (variables) -----*/
 
-let board;
-let turn = 'X';
-let win;
-/**
- * Compteur pour X et Compteur pour O
- */
+let tableauu;
+let toure = 'X';
+let victoiree;
+
 let scoreX = 0;
 let scoreO = 0;
 
-/*----- cached element references -----*/
 
-const squares = Array.from(document.querySelectorAll('#board div'));
-const scoreBoard = document.createElement('div');
-scoreBoard.id = "scoreboard";
-document.body.insertBefore(scoreBoard, document.querySelector('h1').nextSibling);
+const bobby = Array.from(document.querySelectorAll('#tableauu div'));
+const scoretableauu = document.createElement('div');
+scoretableauu.id = "scoretableauu";
+document.body.insertBefore(scoretableauu, document.querySelector('h1').nextSibling);
 
-/*----- event listeners -----*/
-document.getElementById('board').addEventListener('click', handleTurn);
+document.getElementById('tableauu').addEventListener('click', handletoure);
 const messages = document.querySelector('h2');
 document.getElementById('reset-button').addEventListener('click', init);
 
 
-/*----- functions -----*/
-
-function getWinner() {
-    let winner = null;
-    winningCombos.forEach(function(combo, index) {
-        if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
+function getvictoireener() {
+    let victoireener = null;
+    victoireeningCombos.forEach(function(combo, index) {
+        if (tableauu[combo[0]] && tableauu[combo[0]] === tableauu[combo[1]] && tableauu[combo[0]] === tableauu[combo[2]]) victoireener = tableauu[combo[0]];
         });
-        return winner ? winner : board.includes('') ? null : 'T';
+        return victoireener ? victoireener : tableauu.includes('') ? null : 'T';
 };
 
-function handleTurn() {
-    let idx = squares.findIndex(function(square) {
+function handletoure() {
+    let idx = bobby.findIndex(function(square) {
         return square === event.target;
     });
     
-    /**
-     *  Ne pas pouvoir jouer si il y a une win ou un match nul
-     */
-    if (board[idx] || win) return;
+   
+    if (tableauu[idx] || victoiree) return;
     
-    board[idx] = turn;
-    turn = turn === 'X' ? 'O' : 'X';
-    win = getWinner();
-    if (win) {
-        updateScore(win);
+    tableauu[idx] = toure;
+    toure = toure === 'X' ? 'O' : 'X';
+    victoiree = getvictoireener();
+    if (victoiree) {
+        updateScore(victoiree);
     }
     render();
 };
 
 function init() {
-    board = [
+    tableauu = [
     '', '', '',
     '', '', '',
     '', '', ''
     ];
-    /**
-     * Pour mettre l'état de la victoire
-     */
-    win = null
+    victoiree = null
     render();
 };
 
 function render() {
-    board.forEach(function(mark, index) {
-        squares[index].textContent = mark;
+    tableauu.forEach(function(mark, index) {
+        bobby[index].textContent = mark;
         
-        squares[index].classList.remove('x', 'o');
+        bobby[index].classList.remove('x', 'o');
 
         if (mark === 'X') {
-            squares[index].classList.add('x'); 
+            bobby[index].classList.add('x'); 
         } else if (mark === 'O') {
-            squares[index].classList.add('o'); 
+            bobby[index].classList.add('o'); 
         }
     });
-    messages.textContent = win === 'T' ? `C'est un match nul !` : win ? `${win} Gagne le match!` : `C'est le tour des ${turn} !`;
+    messages.textContent = victoiree === 'T' ? `C'est un match nul !` : victoiree ? `${victoiree} Gagne le match!` : `C'est le tour des ${toure} !`;
 };
-/**
- * Fonction pour faire un winner
- */
-function updateScore(winner) {
-    if (winner === 'X') {
+
+function updateScore(victoireener) {
+    if (victoireener === 'X') {
         scoreX++;
-    } else if (winner === 'O') {
+    } else if (victoireener === 'O') {
         scoreO++;
     }
     displayScore();
 }
-/**
- * Pour afficher le score en haut de l'écran
- */
+
 function displayScore() {
-    scoreBoard.textContent = `Score: X - ${scoreX} | O - ${scoreO}`;
+    scoretableauu.textContent = `Score: X - ${scoreX} | O - ${scoreO}`;
 }
 init();
-/**
- * Nommez les variables
- */
+
 const modal = document.getElementById('popUp');
 const overlay = document.getElementById('overlay');
 
-/**
- * Ouvrir automatiquement le modal dès que la page est prête
- * De plus que le background soit bleu derrière le dialogue
- */
-window.addEventListener('load', () => {
+victoireedow.addEventListener('load', () => {
   modal.showModal();  
   overlay.style.display = 'block';  
   document.body.style.overflow = 'hidden'; 
 });
-/**
- * Pouvoir simplement fermer le dialogue et qu'il revient après que la page se recharge
- * De plus que cela fait revernir a la norme le background
- */
 function fermerDialogue() {
   document.getElementById("popUp").close();
   overlay.style.display = 'none';  
   document.body.style.overflow = ''; 
 }
-/**
- * Pouvoir activer le fait que le dialogue ce ferme pour toujours
- * De plus que cela fait revernir a la norme le background
- */
 function fermerPourToujours() {
   localStorage.setItem("dialogueFermé", "true");
   document.getElementById("popUp").close();
   overlay.style.display = 'none';  
   document.body.style.overflow = ''; 
 }
-/**
- * Vérifier que quand la page se charge et que le bouton qui ferme pour toujours est activer cela ce ferme automatiquement.
- * De plus que cela fait revernir a la norme le background
- */
-window.onload = function() {
+victoireedow.onload = function() {
   if (localStorage.getItem("dialogueFermé") === "true") {
     document.getElementById("popUp").close();
     overlay.style.display = 'none';  
